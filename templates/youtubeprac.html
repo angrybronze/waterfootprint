@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Water Footprint | 김동욱</title>
+
+        <style type="text/css">
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 12px;
+                line-height: 1.5;
+                padding: 0;
+                margin: 0;
+                background-color: #339af0;
+            }
+            .container{
+                width:70%;
+                margin:auto;
+                overflow:hidden;
+            }
+            .video{
+                width:50%;
+                margin:auto;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            ul{
+                margin:0;
+                padding:0;
+            }
+            .button_1{
+                font-size: 15px;
+                height:25px;
+                background: #1c7ed6;
+                border:0;
+                padding-left: 20px;
+                padding-right: 20px;
+                color: #e7f5ff;
+                font-weight: bold;
+            }
+            .button_2{
+                font-size: 60px;
+                height:90px;
+                background: #1c7ed6;
+                border:0;
+                padding-left: 20px;
+                padding-right: 20px;
+                color: #e7f5ff;
+                font-weight: bold;
+                transition-duration: 0.4s;
+                text-align: center;
+            }
+            .button_1:hover {
+                background-color: skyblue;
+                color: white;
+            }
+            .button_2:hover {
+                background-color: skyblue;
+                color: white;
+            }
+            header {
+                font-size: 12px;
+                background: #1864ab;
+                color: #e7f5ff;
+                padding-top: 16px;
+                min-height: 70px;
+                border-bottom: #dbe4ff 5px solid;
+                position: fixed;
+                width: 100%;
+            }
+            header a{
+                color:white;
+                font-weight: bold;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-size: 20px;
+            }
+            header li{
+                float:left;
+                display:inline;
+                padding: 0 20px 0 20px
+            }
+            header #brandname{
+                float:left;
+            }
+            header #brandname{
+                margin:0;
+            }
+            header nav{
+                float:right;
+                margin-top: 20px;
+
+            }
+            header a:hover{
+                color:lightgrey;
+                font-weight: bold;
+            }
+            #showcase{
+                min-height: 350px;
+                background-color: #1c7ed6;
+                text-align: center;
+                color:white;
+                border-bottom: #dbe4ff 5px solid;
+                padding: 36px 16px;
+            }
+            #showcase h1{
+                margin-top: 120px;
+                font-size: 30px;
+                margin-bottom: 10px;
+            }
+            #showcase p{
+                font-size: 18px;
+            }
+            #banner {
+                padding: 100px;
+                color: white;
+                background-image: url("wallpaper1edit.jpg");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                border-bottom: #e7f5ff 5px solid;
+            }
+            #banner h1{
+                font-size: 75px;
+                text-align: center;
+                margin-top: 60px;
+            }
+            #banner button {
+                text-align: center;
+                margin-top: 30px;
+            }
+            #boxes{
+                margin-top:20px;
+            }
+            #boxes .box{
+                float:left;
+                width: 30%;
+                padding:10px;
+                text-align: center;
+            }
+            #boxes .box img{
+                width: 200px;
+                height: 200px;
+                object-fit: contain;
+            }
+            #boxes .foodbox img{
+                width: 150px;
+                height: 150px;
+                object-fit: contain;
+            }
+            #boxes h3{
+                margin-top: 30px;
+                text-align: center;
+                font-size: 25px;
+            }
+            #boxes p{
+                margin-top: 40px;
+                text-align: center;
+                font-size: 20px;
+            }
+            footer{
+                padding:10px;
+                margin-top: 20px;
+                color:white;
+                background-color: orange;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .text-align-center {
+                text-align: center;
+            }
+
+        </style>
+
+
+    </head>
+    <body>
+        <header>
+            <div class ="container">
+                <div id="brandname">
+                    <h1>당신의 식사에는 물이 얼마나 들어가 있나요?</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a onclick="location.href='youtubeprac.html'">Home</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <section id="showcase">
+            <div class="container">
+                <h1>물발자국이 뭔가요?</h1>
+                <p>저희가 마시는 커피에 물은 얼마나 들어가 있을까요? 겉으로 보기에는 200ml 잔이면 200ml, 300ml 잔이면 300ml 만큼 들어갔겠죠.
+                하지만 사실 물을 그것보다 훨씬 더 많이 들어가 있습니다. 커피의 원료인 카페인을 생산하고 운반, 그리고 폐기하는데까지 물이 어마어마하게 많이 필요하기 때문이죠.
+                사실 저희가 마시는 커피 한잔에는 물이 140L 가 들어갑니다. 놀랍지 않나요? 이처럼 한 제품의 원재료의 생산, 폐기, 운송에 드는 물을 물발자국이라고 부릅니다.
+                여러분의 아침 식사에는 물이 얼마나 쓰이는지 알아 봅시다!</p>
+            </div>
+        </section>
+
+        <section id="banner">
+            <div class="container text-align-center">
+                <h1>물발자국을 계산해볼까요?</h1>
+                <button type="button" class="button_2" onclick="location.href='calculator1.html'">계산하기</button>
+            </div>
+        </section>
+
+        <section id="boxes">
+            <div class="container">
+                <div class="video">
+                <iframe width="650" height="372"
+                        src="https://www.youtube.com/embed/GxViTgbUgeU">
+                </iframe>
+                </div>
+                <div class="box">
+                    <img src="/waterfootprint/static/coffeee.png" class="icon">
+                    <h3>커피 한잔의 여유?</h3>
+                    <p>커피 한잔에 120L의 물이 들어가는거, 알고 계셨나요?</p>
+                </div>
+                <div class="box">
+                    <img src="/waterfootprint/static/meeeattt.png" class="icon">
+                    <h3>각종 육류</h3>
+                    <p>가축을 기르는데 들어가는 물은 심각한 물부족의 원인으로 손 꼽힙니다</p>
+                </div>
+                <div class="box">
+                    <img src="/waterfootprint/static/waterdrop.png" class="icon">
+                    <h3>물은 유한합니다</h3>
+                    <p>깨끗한 물을 마시지 못하는 사람도 있는 반면, 최상급 품질의 고기를 위해 오늘도 물은 가축을 기르는데 쓰입니다</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Sparta Coding Club, Dongwook Kim, Copyright; 2020</p>
+        </footer>
+    </body>
+</html>
