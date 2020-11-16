@@ -4,6 +4,12 @@
         <meta charset="UTF-8">
         <title>Water Footprint | 김동욱</title>
 
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+
         <style type="text/css">
             body{
                 font-family: Arial, Helvetica, sans-serif;
@@ -42,12 +48,31 @@
                 color: #e7f5ff;
                 font-weight: bold;
                 transition-duration: 0.4s;
+                position: absolute;
+                right: 80px;
+            }
+            .button_3 {
+                font-size: 25px;
+                height: 40px;
+                background: #1c7ed6;
+                border: 0;
+                padding-left: 20px;
+                padding-right: 20px;
+                color: #e7f5ff;
+                font-weight: bold;
+                transition-duration: 0.4s;
+                position: absolute;
+                left: 80px;
             }
             .button_1:hover {
                 background-color: skyblue;
                 color: white;
             }
             .button_2:hover {
+                background-color: skyblue;
+                color: white;
+            }
+            .button_3:hover {
                 background-color: skyblue;
                 color: white;
             }
@@ -117,7 +142,7 @@
                 margin-bottom: 0px;
             }
             #banner h1{
-                font-size: 35px;
+                font-size: 50px;
                 text-align: center;
                 margin-top: 90px;
             }
@@ -159,7 +184,6 @@
                 text-align: center;
                 font-weight: bold;
             }
-
             .foods-wrap {
                 display: grid;
                 grid-row-gap: 5px;
@@ -169,15 +193,89 @@
                 width: max-content;
             }
 
-        </style>
+            span {
+                cursor: pointer;
+            }
 
+            .number {
+                margin: 0;
+            }
+
+            .minus, .plus {
+                width: 20px;
+                height: 20px;
+                background: #f2f2f2;
+                border-radius: 4px;
+                padding: 8px 5px 8px 5px;
+                border: 1px solid #ddd;
+                display: inline-block;
+                vertical-align: middle;
+                text-align: center;
+            }
+
+            input {
+                height: 34px;
+                width: 100px;
+                text-align: center;
+                font-size: 26px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+            .foodbox {
+                text-align: center;
+                background-color: #a5d8ff;
+                border-radius: 15px;
+                padding: 20px;
+            }
+            .highlight{
+                color: darkblue;
+            }
+            .highlight1{
+                color: midnightblue;
+                font-size: 38px;
+            }
+
+        </style>
+        <script>
+            $(document).ready(function () {
+                $('.minus').click(function () {
+                    var $input = $(this).parent().find('input');
+                    var count = parseInt($input.val()) - 1;
+                    count = count < 0 ? 0 : count;
+                    $input.val(count);
+                    $input.change();
+                    return false;
+                });
+                $('.plus').click(function () {
+                    var $input = $(this).parent().find('input');
+                    $input.val(parseInt($input.val()) + 1);
+                    $input.change();
+                    return false;
+                });
+            });
+
+            function calcButtonClicked() {
+                let values = 0;
+                $('div.number > input').each(function () {
+                    values += parseInt(this.value) * parseInt(this.dataset.waterprint);
+                })
+                console.log(values);
+
+                location.href='/lunch?breakfast='+values;
+            }
+        </script>
 
     </head>
     <body>
         <header>
             <div class ="container">
                 <div id="brandname">
-                    <h1>점심으로 무엇을 드셨나요?</h1>
+                    <h1>
+                    <span class="highlight">점심</span><span>으로 무엇을 드셨나요?</span>
+                    </h1>
                 </div>
                 <nav>
                     <ul>
@@ -190,7 +288,10 @@
         <section id="banner">
             <div class="container">
                 <h1>물발자국을 계산해볼까요?</h1>
-                <p>오늘 점심으로 드신 것을 추가해 주세요</p>
+                <p>
+                <span>오늘 <span class="highlight1">점심으로</span> 드신 것을 추가해 주세요
+                </span>
+                </p>
             </div>
         </section>
 
@@ -198,109 +299,192 @@
             <div class="container foods-wrap">
                 <div class="foodbox">
                     <img src="/waterfootprint/static/coffeee.png" class="icon">
-                    <h3>커피</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <h3>커피 한 잔</h3>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="120"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/ramyeon.png" class="icon">
-                    <h3>라면</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <h3>라면 한 봉지</h3>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="1000"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/waterbottle.png" class="icon">
-                    <h3>물</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <h3>물 한 잔</h3>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="1"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/djjigae.png" class="icon">
-                    <h3>된장찌개</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <h3>된장찌개 1인분</h3>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="300"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/bread.png" class="icon">
-                    <h3>빵</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <h3>빵 한 장</h3>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="40"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/eggs.png" class="icon">
-                    <h3>계란</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <h3>계란 한 개</h3>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="135"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/cheese.png" class="icon">
-                    <h3>치즈</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <h3>치즈 한 장</h3>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="50"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/rice.png" class="icon">
-                    <h3>밥</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <h3>밥 한 공기</h3>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="334"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
-                    <img src="/waterfootprint/static/chicken.png" class="icon">
+                    <img src="/waterfootprint/static/chicken2.png" class="icon">
                     <h3>닭고기 1인분</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="865"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/meeeattt.png" class="icon">
                     <h3>소고기 1인분</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="3000"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/kimchi.png" class="icon">
-                    <h3>김치</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <h3>김치 한 접시</h3>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="10"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/pork.png" class="icon">
                     <h3>돼지고기 1인분</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="1200"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/burger.png" class="icon">
-                    <h3>햄버거</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <h3>햄버거 한 개</h3>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="2500"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/salad.png" class="icon">
-                    <h3>샐러드</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <h3>샐러드 한 그릇</h3>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="112"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/ddeokbokkee.png" class="icon">
-                    <h3>떡볶이</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <h3>떡볶이 1인분</h3>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="400"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/salmon.png" class="icon">
-                    <h3>연어</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <h3>연어 1인분</h3>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="340"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/spaghetti.png" class="icon">
-                    <h3>스파게티</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <h3>스파게티 1인분</h3>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="1600"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/pizza.png" class="icon">
-                    <h3>피자</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <h3>피자 한 판</h3>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="1500"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/frenchfries.png" class="icon">
-                    <h3>감자튀김</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <h3>감자튀김 1인분</h3>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="260"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
                 <div class="foodbox">
                     <img src="/waterfootprint/static/beer.png" class="icon">
-                    <h3>맥주</h3>
-                    <button type="button" class="button_1">계산하기</button>
+                    <h3>맥주 한 잔</h3>
+                    <div class="number">
+                        <span class="minus">-</span>
+                        <input type="text" value="0" data-waterprint="75"/>
+                        <span class="plus">+</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <div class="container text-align-center">
-            <button type="button" class="button_2" onclick="location.href='calculator3.html'">저녁 계산하기</button>
+        <div class="container text-align-center" style="height: 150px">
+            <button type="button" class="button_2" style="margin-top: 70px"
+                    onclick="location.href='/dinner?breakfast={{ breakfast }}&lunch={{ lunch }}'">저녁 계산하기</button>
+            <button type="button" class="button_3" style="margin-top: 70px"
+                    onclick="calcButtonClicked()">이전</button>
         </div>
 
 
